@@ -3,6 +3,8 @@ source 'http://rubygems.org'
 gem 'roo'
 
 gem 'roo-xls'
+gem 'simple_xlsx_writer'
+gem 'zip-zip'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use oracle as the database for Active Record

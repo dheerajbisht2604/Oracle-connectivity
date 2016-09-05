@@ -1,0 +1,6 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Products") do |sheet|
+@comics.each do |comic|
+    sheet.add_row [comic.title, comic.issue, comic.publisher]
+  end
+  end

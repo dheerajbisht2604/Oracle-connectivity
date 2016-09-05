@@ -61,6 +61,22 @@ class ComicsController < ApplicationController
     end
   end
 
+  def export
+    require 'simple_xlsx'
+    comics = Comic.all
+    fileTag = "comics-#{Time.now}.xlsx"
+    fileName = "#{Rails.root}/public/#{fileTag}"
+    SimpleXlsx::Serializer.new("#{fileName}") do |doc|
+      doc.add_sheet("Comics") do |sheet|
+        sheet.add_row(["title","issue","publisher"])
+        comics.each do |comic|
+           sheet.add_row([comic.title,comic.issue,comic.publisher])
+        end
+      end
+    end
+
+    send_file "#{fileName}", type: "application/xlsx", x_sendfile: true, :stream => false
+end
 
   def import
     Comic.import(params[:file])
